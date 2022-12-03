@@ -3,6 +3,7 @@ import Back from "./Back";
 import Front from "./Front";
 import play from "../assets/img/seta_play.png";
 import flip from "../assets/img/seta_virar.png";
+import { useState } from "react";
 
 export default function Card() {
   const cards = [
@@ -34,20 +35,36 @@ export default function Card() {
         "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
     },
   ];
+
+  const [front,setFront]=useState(true);
+  const [isClosed,setIsClosed]=useState(true);
+  const [qOpen,setQOpen]=useState(-1);
+  const [qFront,setQFront]=useState(-1);
+  const [qBack,setQBack] = useState(-1);
+  function openQuestion(i){
+    setQOpen(i);
+    console.log(qOpen)
+  }
   return (
     <>
       {cards.map((c, i) => (
         <>
-          <ClosedQuestion>
-            Pergunta {i + 1} <img alt="play" src={play} />{" "}
+        {qOpen!==i ?
+          <ClosedQuestion key={i} >
+            Pergunta {i + 1} 
+            <img alt="play" src={play} onClick={()=>openQuestion(i)}/>
           </ClosedQuestion>
+        : 
+        qFront!==i ?   
           <OpenQuestion>
             <Front key={c.question} question={c.question} />
-            <img alt="flip" src={flip} />
+            <img alt="flip" src={flip} onClick={()=> setQFront(i)}/>
           </OpenQuestion>
+        :
           <OpenQuestion>
             <Back key={c.answer} answer={c.answer} />
           </OpenQuestion>
+    }
         </>
       ))}
     </>
@@ -100,3 +117,7 @@ const OpenQuestion = styled.div`
     right: 10px;
   }
 `;
+
+const Hidden = styled.div`
+  display: none !important;
+`

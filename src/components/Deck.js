@@ -1,6 +1,7 @@
 import Card from "./Card";
 import styled from "styled-components";
 import logo from "../assets/img/logo.png";
+import Concluded from "./Concluded";
 
 export default function Deck() {
   return (
@@ -10,6 +11,7 @@ export default function Deck() {
         <h1>ZapRecall</h1>
       </LogoContainer>
       <Card />
+      <Concluded/>
     </ScreenContainer>
   );
 }
