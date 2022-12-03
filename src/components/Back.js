@@ -15,7 +15,7 @@ export default function Back({
 }) {
   return (
     <>
-      <div data-test="flashcard-text">{answer}</div>
+      <p data-test="flashcard-text">{answer}</p>
       <BackButton
         index={index}
         setCompleted={setCompleted}

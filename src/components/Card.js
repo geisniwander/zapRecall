@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Back from "./Back";
-import Front from "./Front";
 import play from "../assets/img/seta_play.png";
 import good from "../assets/img/icone_certo.png";
 import wrong from "../assets/img/icone_erro.png";
@@ -56,9 +55,9 @@ export default function Card({ completed, setCompleted }) {
   }
 
   return (
-    <div data-test="flashcard">
+    <>
       {cards.map((c, i) => (
-        <>
+        <div data-test="flashcard">
           {qOpen !== i ? (
             <ClosedQuestion
               key={i}
@@ -70,7 +69,7 @@ export default function Card({ completed, setCompleted }) {
             </ClosedQuestion>
           ) : qFront !== i ? (
             <OpenQuestion>
-              <Front key={c.question} question={c.question} />
+              <p data-test="flashcard-text">{c.question}</p>
               <img alt="flip" src={flip} onClick={() => setQFront(i)} data-test="turn-btn"/>
             </OpenQuestion>
           ) : (
@@ -91,9 +90,9 @@ export default function Card({ completed, setCompleted }) {
               />
             </OpenQuestion>
           )}
-        </>
+        </div>
       ))}
-    </div>
+    </>
   );
 }
 
@@ -109,7 +108,7 @@ const ClosedQuestion = styled.div`
   align-items: center;
   justify-content: space-between;
   p {
-    font-family: "Recursive";
+    font-family: 'Recursive';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -127,7 +126,7 @@ const OpenQuestion = styled.div`
   background: #ffffd5;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-family: "Recursive";
+  font-family: 'Recursive';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
