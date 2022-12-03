@@ -1,3 +1,3 @@
-export default function Front(props) {
-  return <div>{props.question}</div>;
+export default function Front({ question }) {
+  return <div>{question}</div>;
 }

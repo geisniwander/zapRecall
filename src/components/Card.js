@@ -2,83 +2,95 @@ import styled from "styled-components";
 import Back from "./Back";
 import Front from "./Front";
 import play from "../assets/img/seta_play.png";
-import good from "../assets/img/icone_certo.png"
-import wrong from "../assets/img/icone_erro.png"
-import mid from "../assets/img/icone_quase.png"
+import good from "../assets/img/icone_certo.png";
+import wrong from "../assets/img/icone_erro.png";
+import mid from "../assets/img/icone_quase.png";
 import flip from "../assets/img/seta_virar.png";
 import { useState } from "react";
 import cards from "./cardObjects";
 
-export default function Card(props) {
-  const [qOpen,setQOpen]=useState(-1);
-  const [qFront,setQFront]=useState(-1);
+export default function Card({ completed, setCompleted }) {
+  const [qOpen, setQOpen] = useState(-1);
+  const [qFront, setQFront] = useState(-1);
   const [corrects, setCorrects] = useState("");
   const [kCorrects, setKCorrects] = useState("");
-  const [incorrects, setIncorrects]=useState("");
-  function openQuestion(i){
+  const [incorrects, setIncorrects] = useState("");
+  function openQuestion(i) {
     setQOpen(i);
   }
 
-  function color(index){
-    if(corrects.includes(index)){
-        return "green";
-    }
-    else if(incorrects.includes(index)){
-        return "red";
-    }
-    else if(kCorrects.includes(index)){
-        return "orange";
-    }
-    else{
-        return "black";
-    } 
-  }
-
-  function situation(index){
-    if(corrects.includes(index)||incorrects.includes(index) || kCorrects.includes(index)){
-        return "line-through";
+  function color(index) {
+    if (corrects.includes(index)) {
+      return "green";
+    } else if (incorrects.includes(index)) {
+      return "red";
+    } else if (kCorrects.includes(index)) {
+      return "orange";
+    } else {
+      return "black";
     }
   }
 
-  function Image(props){
-    if(corrects.includes(props.index)){
-        return <img alt="play" src={good}/>
+  function situation(index) {
+    if (
+      corrects.includes(index) ||
+      incorrects.includes(index) ||
+      kCorrects.includes(index)
+    ) {
+      return "line-through";
     }
-    else if(incorrects.includes(props.index)){
-        return <img alt="play" src={wrong}/>
-    }
-    else if(kCorrects.includes(props.index)){
-        return <img alt="play" src={mid}/>
-    }
-    else{
-        return (<img alt="play" src={play} onClick={()=>openQuestion(props.index)}/>)
-    }
+  }
 
-
-
-    
+  function Image(props) {
+    if (corrects.includes(props.index)) {
+      return <img alt="play" src={good} />;
+    } else if (incorrects.includes(props.index)) {
+      return <img alt="play" src={wrong} />;
+    } else if (kCorrects.includes(props.index)) {
+      return <img alt="play" src={mid} />;
+    } else {
+      return (
+        <img alt="play" src={play} onClick={() => openQuestion(props.index)} />
+      );
+    }
   }
 
   return (
     <>
       {cards.map((c, i) => (
         <>
-        {qOpen!==i ?
-          <ClosedQuestion key={i} color={()=>color(i)} situation={()=>situation(i)}>
-            <p>Pergunta {i + 1}</p>
-            <Image index={i}/> 
-          </ClosedQuestion>
-        : 
-        qFront!==i ?   
-          <OpenQuestion>
-            <Front key={c.question} question={c.question} />
-            <img alt="flip" src={flip} onClick={()=> setQFront(i)}/>
-          </OpenQuestion>
-        :
-          <OpenQuestion>
-            <Back key={c.index} index={c.index} answer={c.answer} setCompleteds={props.setCompleteds} corrects={corrects} setCorrects={setCorrects} kCorrects={kCorrects} setKCorrects={setKCorrects} incorrects={incorrects} setIncorrects={setIncorrects} setQOpen={setQOpen} completed={props.completed} setCompleted={props.setCompleted}/>
-          </OpenQuestion>
-    }
+          {qOpen !== i ? (
+            <ClosedQuestion
+              key={i}
+              color={() => color(i)}
+              situation={() => situation(i)}
+            >
+              <p>Pergunta {i + 1}</p>
+              <Image index={i} />
+            </ClosedQuestion>
+          ) : qFront !== i ? (
+            <OpenQuestion>
+              <Front key={c.question} question={c.question} />
+              <img alt="flip" src={flip} onClick={() => setQFront(i)} />
+            </OpenQuestion>
+          ) : (
+            <OpenQuestion>
+              <Back
+                key={c.index}
+                index={c.index}
+                answer={c.answer}
+                corrects={corrects}
+                setCorrects={setCorrects}
+                kCorrects={kCorrects}
+                setKCorrects={setKCorrects}
+                incorrects={incorrects}
+                setIncorrects={setIncorrects}
+                setQOpen={setQOpen}
+                completed={completed}
+                setCompleted={setCompleted}
+              />
+            </OpenQuestion>
+          )}
         </>
       ))}
     </>
@@ -102,8 +114,8 @@ const ClosedQuestion = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: ${props => props.color};
-    text-decoration: ${props => props.situation};
+    color: ${(props) => props.color};
+    text-decoration: ${(props) => props.situation};
   }
 `;
 
@@ -132,5 +144,3 @@ const OpenQuestion = styled.div`
     right: 10px;
   }
 `;
-
-

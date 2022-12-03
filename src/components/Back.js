@@ -1,20 +1,32 @@
 import BackButton from "./BackButtons";
 
-export default function Back(props) {
+export default function Back({
+  answer,
+  index,
+  setCompleted,
+  corrects,
+  setCorrects,
+  kCorrects,
+  setKCorrects,
+  incorrects,
+  setIncorrects,
+  setQOpen,
+  completed,
+}) {
   return (
     <>
-      <div>{props.answer}</div>
+      <div>{answer}</div>
       <BackButton
-        index={props.index}
-        setCompleted={props.setCompleted}
-        corrects={props.corrects}
-        setCorrects={props.setCorrects}
-        kCorrects={props.kCorrects}
-        setKCorrects={props.setKCorrects}
-        incorrects={props.incorrects}
-        setIncorrects={props.setIncorrects}
-        setQOpen={props.setQOpen}
-        completed={props.completed}
+        index={index}
+        setCompleted={setCompleted}
+        corrects={corrects}
+        setCorrects={setCorrects}
+        kCorrects={kCorrects}
+        setKCorrects={setKCorrects}
+        incorrects={incorrects}
+        setIncorrects={setIncorrects}
+        setQOpen={setQOpen}
+        completed={completed}
       />
     </>
   );
