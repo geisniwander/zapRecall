@@ -6,7 +6,7 @@ export default function Start({setStart}){
         <StartScreen>
             <img alt="logo" src={logo} />
             <h1>ZapRecall</h1>
-            <button onClick={()=>setStart(true)}>Iniciar Recall!</button>
+            <button onClick={()=>setStart(true)} data-test="start-btn">Iniciar Recall!</button>
         </StartScreen>
     );
 }
