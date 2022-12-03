@@ -1,14 +1,35 @@
 import styled from "styled-components";
 import cards from "./cardObjects";
+import good from "../assets/img/icone_certo.png";
+import wrong from "../assets/img/icone_erro.png";
+import mid from "../assets/img/icone_quase.png";
 
-export default function Concluded({ completed }) {
-  return <QConcluded>
+export default function Concluded({completed, icons }) {
+
+function Icons(){
+    return(
+    icons.map((n)=><img key={n} alt="icon" src={n==="c" ? good : (n==="i" ? wrong : mid)} />)
+    );
+}
+
+  return( 
+    <QConcluded>
     <div data-test="footer">   
     {completed}/{cards.length} Concluídos
     </div>
-    </QConcluded>;
+    <ContainerIcons> 
+    <Icons/>
+    </ContainerIcons>
+    </QConcluded>
+    );
 }
-
+const ContainerIcons = styled.div`
+display: flex;
+justify-content: center;
+img{
+margin: 10%;
+}
+`
 const QConcluded = styled.div`
   width: 100%;
   min-height: 50px;

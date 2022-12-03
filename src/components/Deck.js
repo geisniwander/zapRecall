@@ -6,15 +6,15 @@ import { useState } from "react";
 
 export default function Deck() {
   const [completed, setCompleted] = useState(0);
-
+  const [icons, setIcons] = useState([]);
   return (
     <ScreenContainer>
       <LogoContainer>
         <img alt="logo" src={logo} />
         <h1>ZapRecall</h1>
       </LogoContainer>
-      <Card completed={completed} setCompleted={setCompleted} />
-      <Concluded completed={completed} />
+      <Card completed={completed} setCompleted={setCompleted} icons={icons} setIcons={setIcons} />
+      <Concluded completed={completed} icons={icons} />
     </ScreenContainer>
   );
 }

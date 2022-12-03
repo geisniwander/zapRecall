@@ -12,6 +12,8 @@ export default function Back({
   setIncorrects,
   setQOpen,
   completed,
+  icons,
+  setIcons
 }) {
   return (
     <>
@@ -27,6 +29,8 @@ export default function Back({
         setIncorrects={setIncorrects}
         setQOpen={setQOpen}
         completed={completed}
+        icons={icons}
+        setIcons={setIcons}
       />
     </>
   );

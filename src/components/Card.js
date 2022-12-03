@@ -8,7 +8,7 @@ import flip from "../assets/img/seta_virar.png";
 import { useState } from "react";
 import cards from "./cardObjects";
 
-export default function Card({ completed, setCompleted }) {
+export default function Card({ completed, setCompleted, icons, setIcons}) {
   const [qOpen, setQOpen] = useState(-1);
   const [qFront, setQFront] = useState(-1);
   const [corrects, setCorrects] = useState("");
@@ -42,18 +42,57 @@ export default function Card({ completed, setCompleted }) {
 
   function Image(props) {
     if (corrects.includes(props.index)) {
-      return <img alt="play" src={good} data-test="zap-icon"/>;
+      return <img alt="play" src={good} data-test="zap-icon" />;
     } else if (incorrects.includes(props.index)) {
-      return <img alt="play" src={wrong} data-test="no-icon"/>;
+      return <img alt="play" src={wrong} data-test="no-icon" />;
     } else if (kCorrects.includes(props.index)) {
       return <img alt="play" src={mid} data-test="partial-icon" />;
     } else {
       return (
-        <img alt="play" src={play} onClick={() => openQuestion(props.index)} data-test="play-btn" />
+        <img
+          alt="play"
+          src={play}
+          onClick={() => openQuestion(props.index)}
+          data-test="play-btn"
+        />
       );
     }
   }
 
+  function CardOpen({ cindex, cquestion, canswer, index }) {
+    if (qFront !== index) {
+      return (
+        <>
+          <p data-test="flashcard-text">{cquestion}</p>
+          <img
+            alt="flip"
+            src={flip}
+            onClick={() => setQFront(index)}
+            data-test="turn-btn"
+          />
+        </>
+      );
+    } else {
+      return (
+        <Back
+          key={cindex}
+          index={cindex}
+          answer={canswer}
+          corrects={corrects}
+          setCorrects={setCorrects}
+          kCorrects={kCorrects}
+          setKCorrects={setKCorrects}
+          incorrects={incorrects}
+          setIncorrects={setIncorrects}
+          setQOpen={setQOpen}
+          completed={completed}
+          setCompleted={setCompleted}
+          icons={icons}
+          setIcons={setIcons}
+        />
+      );
+    }
+  }
   return (
     <>
       {cards.map((c, i) => (
@@ -67,26 +106,13 @@ export default function Card({ completed, setCompleted }) {
               <p data-test="flashcard-text">Pergunta {i + 1}</p>
               <Image index={i} />
             </ClosedQuestion>
-          ) : qFront !== i ? (
-            <OpenQuestion>
-              <p data-test="flashcard-text">{c.question}</p>
-              <img alt="flip" src={flip} onClick={() => setQFront(i)} data-test="turn-btn"/>
-            </OpenQuestion>
           ) : (
             <OpenQuestion>
-              <Back
-                key={c.index}
-                index={c.index}
-                answer={c.answer}
-                corrects={corrects}
-                setCorrects={setCorrects}
-                kCorrects={kCorrects}
-                setKCorrects={setKCorrects}
-                incorrects={incorrects}
-                setIncorrects={setIncorrects}
-                setQOpen={setQOpen}
-                completed={completed}
-                setCompleted={setCompleted}
+              <CardOpen
+                cindex={c.index}
+                cquestion={c.question}
+                canswer={c.answer}
+                index={i}
               />
             </OpenQuestion>
           )}
@@ -108,7 +134,7 @@ const ClosedQuestion = styled.div`
   align-items: center;
   justify-content: space-between;
   p {
-    font-family: 'Recursive';
+    font-family: "Recursive";
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -126,7 +152,7 @@ const OpenQuestion = styled.div`
   background: #ffffd5;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
-  font-family: 'Recursive';
+  font-family: "Recursive";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

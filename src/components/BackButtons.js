@@ -11,21 +11,27 @@ export default function BackButton({
   setIncorrects,
   setQOpen,
   completed,
+  icons,
+  setIcons
 }) {
   function correct(i) {
     setCorrects(corrects + i);
+    setIcons([...icons,"c"])
   }
   function kCorrect(i) {
     setKCorrects(kCorrects + i);
+    setIcons([...icons,"p"])
   }
   function incorrect(i) {
     setIncorrects(incorrects + i);
+    setIcons([...icons,"i"])
   }
 
   function clicked(i, s) {
     setQOpen(-1);
     setCompleted(completed + 1);
   }
+
   return (
     <DivButtons>
       <Buttons color="#FF3030">
