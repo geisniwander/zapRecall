@@ -2,16 +2,19 @@ import Card from "./Card";
 import styled from "styled-components";
 import logo from "../assets/img/logo.png";
 import Concluded from "./Concluded";
+import { useState } from "react";
 
 export default function Deck() {
+const [completed, setCompleted] = useState(0);
+
   return (
     <ScreenContainer>
       <LogoContainer>
         <img alt="logo" src={logo} />
         <h1>ZapRecall</h1>
       </LogoContainer>
-      <Card />
-      <Concluded/>
+      <Card completed={completed} setCompleted={setCompleted}/>
+      <Concluded completed={completed}/>
     </ScreenContainer>
   );
 }

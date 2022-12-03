@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Concluded(){
+export default function Concluded(props){
     return(
-        <QConcluded>Concluídos</QConcluded>
+        <QConcluded> {props.completed} Concluídos</QConcluded>
     );
 }
 

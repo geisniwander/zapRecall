@@ -1,11 +1,22 @@
 import styled from "styled-components";
 
-export default function BackButton(){
+export default function BackButton(props){
+function correct(i){
+    props.setCorrects(props.corrects + i);
+};
+function kCorrect(i){
+    props.setKCorrects(props.kCorrects + i);
+};
+function incorrect(i){
+    props.setIncorrects(props.incorrects + i);
+};
+
+ 
     return(
         <DivButtons>
-            <Buttons color="#FF3030">Não lembrei</Buttons>
-            <Buttons color="#FF922E">Quase não lembrei</Buttons>
-            <Buttons color="#2FBE34">Zap!</Buttons>
+            <Buttons color="#FF3030" onClick={()=>{incorrect(props.index);props.setQOpen(-1); props.setCompleted(props.completed+1)}}>Não lembrei</Buttons>
+            <Buttons color="#FF922E" onClick={()=>{kCorrect(props.index);props.setQOpen(-1); props.setCompleted(props.completed+1)}}>Quase não lembrei</Buttons>
+            <Buttons color="#2FBE34" onClick={()=>{correct(props.index); props.setQOpen(-1); props.setCompleted(props.completed+1)}}>Zap!</Buttons>
         </DivButtons>
     );
 }
