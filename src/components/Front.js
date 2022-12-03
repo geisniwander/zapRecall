@@ -1,3 +1,3 @@
 export default function Front({ question }) {
-  return <div>{question}</div>;
+  return <div data-test="flashcard-text">{question}</div>;
 }

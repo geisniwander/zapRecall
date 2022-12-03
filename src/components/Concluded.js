@@ -2,7 +2,11 @@ import styled from "styled-components";
 import cards from "./cardObjects";
 
 export default function Concluded({ completed }) {
-  return <QConcluded>{completed}/{cards.length} Concluídos</QConcluded>;
+  return <QConcluded>
+    <div data-test="footer">   
+    {completed}/{cards.length} Concluídos
+    </div>
+    </QConcluded>;
 }
 
 const QConcluded = styled.div`

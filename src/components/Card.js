@@ -43,20 +43,20 @@ export default function Card({ completed, setCompleted }) {
 
   function Image(props) {
     if (corrects.includes(props.index)) {
-      return <img alt="play" src={good} />;
+      return <img alt="play" src={good} data-test="zap-icon"/>;
     } else if (incorrects.includes(props.index)) {
-      return <img alt="play" src={wrong} />;
+      return <img alt="play" src={wrong} data-test="no-icon"/>;
     } else if (kCorrects.includes(props.index)) {
-      return <img alt="play" src={mid} />;
+      return <img alt="play" src={mid} data-test="partial-icon" />;
     } else {
       return (
-        <img alt="play" src={play} onClick={() => openQuestion(props.index)} />
+        <img alt="play" src={play} onClick={() => openQuestion(props.index)} data-test="play-btn" />
       );
     }
   }
 
   return (
-    <>
+    <div data-test="flashcard">
       {cards.map((c, i) => (
         <>
           {qOpen !== i ? (
@@ -65,13 +65,13 @@ export default function Card({ completed, setCompleted }) {
               color={() => color(i)}
               situation={() => situation(i)}
             >
-              <p>Pergunta {i + 1}</p>
+              <p data-test="flashcard-text">Pergunta {i + 1}</p>
               <Image index={i} />
             </ClosedQuestion>
           ) : qFront !== i ? (
             <OpenQuestion>
               <Front key={c.question} question={c.question} />
-              <img alt="flip" src={flip} onClick={() => setQFront(i)} />
+              <img alt="flip" src={flip} onClick={() => setQFront(i)} data-test="turn-btn"/>
             </OpenQuestion>
           ) : (
             <OpenQuestion>
@@ -93,7 +93,7 @@ export default function Card({ completed, setCompleted }) {
           )}
         </>
       ))}
-    </>
+    </div>
   );
 }
 

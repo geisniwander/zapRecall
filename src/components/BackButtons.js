@@ -28,32 +28,37 @@ export default function BackButton({
   }
   return (
     <DivButtons>
-      <Buttons
-        color="#FF3030"
+      <Buttons color="#FF3030">
+        <button
         onClick={() => {
           incorrect(index);
           clicked();
         }}
+        data-test="no-btn"
       >
         Não lembrei
+    </button>
       </Buttons>
-      <Buttons
-        color="#FF922E"
+      <Buttons color="#FF922E"><button
         onClick={() => {
           kCorrect(index);
           clicked();
         }}
+        data-test="partial-btn"
       >
         Quase não lembrei
+    </button>
       </Buttons>
-      <Buttons
-        color="#2FBE34"
+      <Buttons color="#2FBE34">
+        <button
         onClick={() => {
           correct(index);
           clicked();
         }}
+        data-test="zap-btn"
       >
         Zap!
+        </button>
       </Buttons>
     </DivButtons>
   );
@@ -66,6 +71,7 @@ const DivButtons = styled.div`
   justify-content: space-between;
 `;
 const Buttons = styled.div`
+button{
   width: 85px;
   height: 38px;
   font-family: "Recursive";
@@ -78,7 +84,9 @@ const Buttons = styled.div`
   justify-content: center;
   text-align: center;
   color: #ffffff;
-  background: ${(props) => props.color};
+  background-color: ${(props) => props.color};
+  border:none;
   border-radius: 5px;
   padding: 5px;
+}
 `;
