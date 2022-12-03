@@ -4,32 +4,38 @@ import good from "../assets/img/icone_certo.png";
 import wrong from "../assets/img/icone_erro.png";
 import mid from "../assets/img/icone_quase.png";
 
-export default function Concluded({completed, icons }) {
+export default function Concluded({ completed, icons }) {
+  function Icons() {
+    return icons.map((n) => (
+      <img
+        key={n}
+        alt="icon"
+        src={n === "c" ? good : n === "i" ? wrong : mid}
+        data-test={
+          n === "c" ? "zap-icon" : n === "i" ? "no-icon" : "partial-icon"
+        }
+      />
+    ));
+  }
 
-function Icons(){
-    return(
-    icons.map((n)=><img key={n} alt="icon" src={n==="c" ? good : (n==="i" ? wrong : mid)} />)
-    );
-}
-
-  return( 
+  return (
     <QConcluded>
-    <div data-test="footer">   
-    {completed}/{cards.length} Concluídos
-    </div>
-    <ContainerIcons> 
-    <Icons/>
-    </ContainerIcons>
+      <div data-test="footer">
+        {completed}/{cards.length} Concluídos
+        <ContainerIcons>
+          <Icons />
+        </ContainerIcons>
+      </div>
     </QConcluded>
-    );
+  );
 }
 const ContainerIcons = styled.div`
-display: flex;
-justify-content: center;
-img{
-margin: 10%;
-}
-`
+  display: flex;
+  justify-content: center;
+  img {
+    margin: 10%;
+  }
+`;
 const QConcluded = styled.div`
   width: 100%;
   min-height: 50px;
