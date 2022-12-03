@@ -1,7 +1,8 @@
+import Deck from "./components/Deck";
 
 export default function App() {
   return (
-    0
+    <Deck/>
   )
 }
 
