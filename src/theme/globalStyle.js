@@ -44,5 +44,6 @@ import { createGlobalStyle } from "styled-components";
      border-collapse: collapse;
      border-spacing: 0;
  }
+
 `
 export default GlobalStyle;
