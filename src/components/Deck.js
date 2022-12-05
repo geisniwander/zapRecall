@@ -13,7 +13,12 @@ export default function Deck() {
         <img alt="logo" src={logo} />
         <h1>ZapRecall</h1>
       </LogoContainer>
-      <Card completed={completed} setCompleted={setCompleted} icons={icons} setIcons={setIcons} />
+      <Card
+        completed={completed}
+        setCompleted={setCompleted}
+        icons={icons}
+        setIcons={setIcons}
+      />
       <Concluded completed={completed} icons={icons} />
     </ScreenContainer>
   );

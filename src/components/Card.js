@@ -8,7 +8,7 @@ import flip from "../assets/img/seta_virar.png";
 import { useState } from "react";
 import cards from "./cardObjects";
 
-export default function Card({ completed, setCompleted, icons, setIcons}) {
+export default function Card({ completed, setCompleted, icons, setIcons }) {
   const [qOpen, setQOpen] = useState(-1);
   const [qFront, setQFront] = useState(-1);
   const [corrects, setCorrects] = useState("");

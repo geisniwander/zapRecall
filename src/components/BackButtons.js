@@ -12,19 +12,19 @@ export default function BackButton({
   setQOpen,
   completed,
   icons,
-  setIcons
+  setIcons,
 }) {
   function correct(i) {
     setCorrects(corrects + i);
-    setIcons([...icons,"c"])
+    setIcons([...icons, "c"]);
   }
   function kCorrect(i) {
     setKCorrects(kCorrects + i);
-    setIcons([...icons,"p"])
+    setIcons([...icons, "p"]);
   }
   function incorrect(i) {
     setIncorrects(incorrects + i);
-    setIcons([...icons,"i"])
+    setIcons([...icons, "i"]);
   }
 
   function clicked(i, s) {
@@ -36,34 +36,35 @@ export default function BackButton({
     <DivButtons>
       <Buttons color="#FF3030">
         <button
-        onClick={() => {
-          incorrect(index);
-          clicked();
-        }}
-        data-test="no-btn"
-      >
-        Não lembrei
-    </button>
+          onClick={() => {
+            incorrect(index);
+            clicked();
+          }}
+          data-test="no-btn"
+        >
+          Não lembrei
+        </button>
       </Buttons>
-      <Buttons color="#FF922E"><button
-        onClick={() => {
-          kCorrect(index);
-          clicked();
-        }}
-        data-test="partial-btn"
-      >
-        Quase não lembrei
-    </button>
+      <Buttons color="#FF922E">
+        <button
+          onClick={() => {
+            kCorrect(index);
+            clicked();
+          }}
+          data-test="partial-btn"
+        >
+          Quase não lembrei
+        </button>
       </Buttons>
       <Buttons color="#2FBE34">
         <button
-        onClick={() => {
-          correct(index);
-          clicked();
-        }}
-        data-test="zap-btn"
-      >
-        Zap!
+          onClick={() => {
+            correct(index);
+            clicked();
+          }}
+          data-test="zap-btn"
+        >
+          Zap!
         </button>
       </Buttons>
     </DivButtons>
@@ -77,22 +78,22 @@ const DivButtons = styled.div`
   justify-content: space-between;
 `;
 const Buttons = styled.div`
-button{
-  width: 85px;
-  height: 38px;
-  font-family: "Recursive";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #ffffff;
-  background-color: ${(props) => props.color};
-  border:none;
-  border-radius: 5px;
-  padding: 5px;
-}
+  button {
+    width: 85px;
+    height: 38px;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    background-color: ${(props) => props.color};
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+  }
 `;

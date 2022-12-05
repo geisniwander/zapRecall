@@ -13,7 +13,7 @@ export default function Back({
   setQOpen,
   completed,
   icons,
-  setIcons
+  setIcons,
 }) {
   return (
     <>
