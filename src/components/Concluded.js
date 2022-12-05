@@ -79,7 +79,7 @@ const Msg = styled.div`
 `;
 const Title = styled.div`
 display: flex;
-justify-contente; center;
+justify-content: center;
 margin-bottom: 5%;
 img{
   width: 23px;
