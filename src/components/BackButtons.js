@@ -27,7 +27,7 @@ export default function BackButton({
     setIcons([...icons, "i"]);
   }
 
-  function clicked(i, s) {
+  function clicked() {
     setQOpen(-1);
     setCompleted(completed + 1);
   }
@@ -70,9 +70,7 @@ export default function BackButton({
     </DivButtons>
   );
 }
-/* Você vai precisar trocar a cor dos botões e alguns textos!
-  CINZA = "#333333" 
-*/
+
 const DivButtons = styled.div`
   display: flex;
   justify-content: space-between;

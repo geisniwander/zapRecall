@@ -26,7 +26,7 @@ export default function Card({ completed, setCompleted, icons, setIcons }) {
     } else if (kCorrects.includes(index)) {
       return "orange";
     } else {
-      return "black";
+      return "#333333";
     }
   }
 
